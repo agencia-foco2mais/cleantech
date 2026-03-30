@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Cleantech Incubator</title>
+  <meta name="description" content="Cleantech Incubator - Acelerando startups de tecnologias limpas para um futuro sustentável. Inovação, Descarbonização e Regeneração." />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+      background: #FAFAF5;
+      color: #1A1A2E;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4, h5, h6 { font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    button, input { font-family: inherit; border: none; outline: none; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #F0EFE9; }
+    ::-webkit-scrollbar-thumb { background: #7CB342; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #558B2F; }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    @media (min-width: 640px) { .container { padding-left: 1.5rem; padding-right: 1.5rem; } }
+    @media (min-width: 1024px) { .container { padding-left: 2rem; padding-right: 2rem; max-width: 1280px; } }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0) translateX(-50%); }
+      50% { transform: translateY(8px) translateX(-50%); }
+    }
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .animate-left {
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .animate-left.visible { opacity: 1; transform: translateX(0); }
+    .animate-right {
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .animate-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* Stagger delays */
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+    .delay-5 { transition-delay: 0.5s; }
+    .delay-6 { transition-delay: 0.6s; }
+    .delay-7 { transition-delay: 0.7s; }
+    .delay-8 { transition-delay: 0.8s; }
+    .delay-9 { transition-delay: 0.9s; }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      transition: all 0.5s ease;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent);
+    }
+    .navbar.scrolled {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+    @media (min-width: 1024px) { .navbar-inner { height: 96px; } }
+    .nav-links { display: none; align-items: center; gap: 2rem; flex: 1; }
+    @media (min-width: 1024px) { .nav-links { display: flex; } }
+    .nav-links.right { justify-content: flex-end; }
+    .nav-link {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+      color: rgba(255,255,255,0.9);
+    }
+    .nav-link:hover { color: #8BC34A; }
+    .navbar.scrolled .nav-link { color: rgba(26,26,46,0.8); }
+    .navbar.scrolled .nav-link:hover { color: #2E7D32; }
+    .nav-logo { flex-shrink: 0; margin: 0 1rem; }
+    .nav-logo img {
+      transition: all 0.5s;
+      height: 40px;
+    }
+    @media (min-width: 1024px) { .nav-logo img { height: 56px; } }
+    .navbar.scrolled .nav-logo img { height: 32px; }
+    @media (min-width: 1024px) { .navbar.scrolled .nav-logo img { height: 40px; } }
+    .nav-social {
+      transition: color 0.3s;
+      color: rgba(255,255,255,0.8);
+    }
+    .nav-social:hover { color: #8BC34A; }
+    .navbar.scrolled .nav-social { color: rgba(26,26,46,0.6); }
+    .navbar.scrolled .nav-social:hover { color: #2E7D32; }
+    .mobile-toggle {
+      display: block;
+      padding: 0.5rem;
+      background: none;
+      color: white;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .navbar.scrolled .mobile-toggle { color: #1A1A2E; }
+    @media (min-width: 1024px) { .mobile-toggle { display: none; } }
+    .mobile-menu {
+      display: none;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid #e8e8e0;
+      padding: 1.5rem 1rem;
+    }
+    .mobile-menu.open { display: block; }
+    @media (min-width: 1024px) { .mobile-menu { display: none !important; } }
+    .mobile-menu a {
+      display: block;
+      color: #1A1A2E;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(26,26,46,0.05);
+      transition: color 0.3s;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: #2E7D32; }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(26,26,46,0.7), rgba(26,26,46,0.5), rgba(26,26,46,0.7));
+    }
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 8rem 1rem 2rem;
+    }
+    @media (min-width: 1024px) { .hero-content { padding-top: 9rem; } }
+    .hero h1 {
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      animation: fadeInUp 1s ease-out;
+    }
+    @media (min-width: 640px) { .hero h1 { font-size: 2.25rem; } }
+    @media (min-width: 768px) { .hero h1 { font-size: 3rem; } }
+    @media (min-width: 1024px) { .hero h1 { font-size: 3.75rem; } }
+    .hero h1 .green { color: #8BC34A; }
+    .hero h1 span { display: block; }
+    .hero-desc {
+      margin-top: 2rem;
+      font-size: 1.125rem;
+      color: rgba(255,255,255,0.9);
+      max-width: 48rem;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 300;
+      line-height: 1.7;
+      animation: fadeInUp 1s ease-out 0.4s both;
+    }
+    @media (min-width: 768px) { .hero-desc { font-size: 1.5rem; } }
+    .hero-desc strong { font-weight: 600; color: white; }
+    .hero-buttons {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      animation: fadeInUp 0.8s ease-out 0.8s both;
+    }
+    @media (min-width: 640px) { .hero-buttons { flex-direction: row; } }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+      background: #2E7D32;
+      color: white;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 0.375rem;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary:hover { background: #1B5E20; box-shadow: 0 10px 25px rgba(46,125,50,0.25); }
+    .btn-outline-white {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+      border: 2px solid rgba(255,255,255,0.4);
+      color: white;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 0.375rem;
+      transition: all 0.3s;
+      background: transparent;
+      cursor: pointer;
+    }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7); }
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.6);
+      animation: bounce 2s infinite;
+      transition: color 0.3s;
+    }
+    .scroll-indicator:hover { color: white; }
+
+    /* ===== CRISIS / ABOUT SECTION ===== */
+    .crisis-section { padding: 6rem 0; background: #F8F7F2; }
+    @media (min-width: 1024px) { .crisis-section { padding: 9rem 0; } }
+    .crisis-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    @media (min-width: 1024px) { .crisis-grid { grid-template-columns: 1fr 1fr; gap: 6rem; } }
+    .crisis-image-wrapper { position: relative; }
+    .crisis-image {
+      position: relative;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      max-width: 28rem;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+    }
+    .crisis-image img { width: 100%; height: 100%; object-fit: cover; }
+    .green-card {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1rem;
+      background: linear-gradient(135deg, #1B5E20, #2E7D32);
+      color: white;
+      padding: 1.75rem;
+      border-radius: 0.5rem;
+      max-width: 280px;
+      box-shadow: 0 25px 50px rgba(27,94,32,0.3);
+    }
+    @media (min-width: 1024px) { .green-card { right: -2.5rem; } }
+    .green-card .small-text { font-size: 0.875rem; font-weight: 300; opacity: 0.75; line-height: 1.6; }
+    .green-card .stat-row { margin-top: 0.75rem; display: flex; align-items: baseline; gap: 0.75rem; }
+    .green-card .stat-number {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #8BC34A;
+    }
+    .green-card .stat-label { font-size: 1rem; font-weight: 700; line-height: 1.3; }
+    .crisis-text h2 {
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: #1A1A2E;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+    @media (min-width: 640px) { .crisis-text h2 { font-size: 2.25rem; } }
+    @media (min-width: 1024px) { .crisis-text h2 { font-size: 2.75rem; } }
+    .crisis-text h2 .green-underline {
+      color: #2E7D32;
+      position: relative;
+      display: inline-block;
+    }
+    .crisis-text h2 .green-underline svg {
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+    }
+    .crisis-items { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    .crisis-item { display: flex; align-items: center; gap: 1rem; padding: 0.25rem 0; }
+    .crisis-item-icon {
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+      background: rgba(46,125,50,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid rgba(46,125,50,0.15);
+      color: #2E7D32;
+    }
+    .crisis-item span { font-size: 1.125rem; color: rgba(26,26,46,0.75); font-weight: 500; }
+    .crisis-bottom {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(26,26,46,0.08);
+    }
+    .crisis-bottom p:first-child {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1A1A2E;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      line-height: 1.6;
+    }
+    .crisis-bottom p:last-child {
+      margin-top: 1rem;
+      color: rgba(26,26,46,0.6);
+      line-height: 1.6;
+      font-size: 1.0625rem;
+    }
+    .crisis-bottom strong { color: #1A1A2E; font-weight: 600; }
+
+    /* ===== SOLUTIONS ===== */
+    .solutions-section { padding: 6rem 0; background: #F0EFE9; }
+    @media (min-width: 1024px) { .solutions-section { padding: 9rem 0; } }
+    .section-header { text-align: center; max-width: 40rem; margin: 0 auto; }
+    .section-header h2 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: #1A1A2E;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+    @media (min-width: 640px) { .section-header h2 { font-size: 3rem; } }
+    .section-header p { margin-top: 1rem; color: rgba(26,26,46,0.55); font-size: 1.125rem; }
+    .solutions-grid {
+      margin-top: 4rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 768px) { .solutions-grid { grid-template-columns: repeat(3, 1fr); } }
+    .solution-card {
+      background: white;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      transition: box-shadow 0.5s;
+    }
+    .solution-card:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    .solution-card-image {
+      position: relative;
+      height: 14rem;
+      overflow: hidden;
+    }
+    .solution-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s;
+    }
+    .solution-card:hover .solution-card-image img { transform: scale(1.05); }
+    .solution-card-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.2), transparent);
+    }
+    .solution-icon-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3.5rem;
+      height: 3.5rem;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      border: 2px solid rgba(46,125,50,0.1);
+      color: #2E7D32;
+    }
+    .solution-card-body { padding: 2.5rem 1.5rem 2rem; text-align: center; }
+    .solution-card-body .question {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #8BC34A;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    .solution-card-body h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1A1A2E;
+    }
+    .solution-card-body p {
+      margin-top: 1rem;
+      color: rgba(26,26,46,0.6);
+      line-height: 1.6;
+      font-size: 0.9375rem;
+    }
+    .btn-green-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.5rem;
+      background: #2E7D32;
+      color: white;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 0.375rem;
+      transition: all 0.3s;
+    }
+    .btn-green-sm:hover { background: #1B5E20; }
+
+    /* ===== IMPACT ===== */
+    .impact-section {
+      position: relative;
+      padding: 6rem 0;
+      background: #1B5E20;
+      overflow: hidden;
+    }
+    @media (min-width: 1024px) { .impact-section { padding: 9rem 0; } }
+    .impact-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.03;
+      background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0);
+      background-size: 48px 48px;
+    }
+    .impact-blur-1 {
+      position: absolute;
+      top: 0; left: 0;
+      width: 24rem; height: 24rem;
+      background: rgba(139,195,74,0.1);
+      border-radius: 50%;
+      filter: blur(120px);
+      transform: translate(-50%, -50%);
+    }
+    .impact-blur-2 {
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 18rem; height: 18rem;
+      background: rgba(46,125,50,0.2);
+      border-radius: 50%;
+      filter: blur(100px);
+      transform: translate(50%, 50%);
+    }
+    .impact-header { text-align: center; margin-bottom: 4rem; position: relative; z-index: 10; }
+    .impact-header h2 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+    @media (min-width: 640px) { .impact-header h2 { font-size: 3rem; } }
+    .impact-header p { margin-top: 1rem; color: rgba(255,255,255,0.5); font-size: 1.125rem; max-width: 40rem; margin-left: auto; margin-right: auto; }
+    .impact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      position: relative;
+      z-index: 10;
+    }
+    @media (min-width: 1024px) { .impact-grid { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; } }
+    .impact-item { text-align: center; padding: 1.5rem 0; position: relative; }
+    .impact-divider {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 4rem;
+      background: rgba(255,255,255,0.1);
+    }
+    @media (min-width: 1024px) { .impact-divider { display: block; } }
+    .impact-number {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #8BC34A;
+      font-variant-numeric: tabular-nums;
+    }
+    @media (min-width: 640px) { .impact-number { font-size: 3.75rem; } }
+    @media (min-width: 1024px) { .impact-number { font-size: 4.5rem; } }
+    .impact-label {
+      margin-top: 1rem;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+
+    /* ===== APPROACH ===== */
+    .approach-section { padding: 6rem 0; background: white; }
+    @media (min-width: 1024px) { .approach-section { padding: 9rem 0; } }
+    .approach-header { text-align: center; max-width: 48rem; margin: 0 auto; }
+    .approach-header h2 {
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: #1A1A2E;
+      text-transform: uppercase;
+      line-height: 1.15;
+    }
+    @media (min-width: 640px) { .approach-header h2 { font-size: 2.25rem; } }
+    @media (min-width: 1024px) { .approach-header h2 { font-size: 3rem; } }
+    .approach-header h2 .green-underline {
+      color: #2E7D32;
+      position: relative;
+      display: inline-block;
+    }
+    .approach-header h2 .green-underline svg {
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+    }
+    .approach-header p { margin-top: 1.5rem; color: rgba(26,26,46,0.55); font-size: 1.125rem; line-height: 1.6; }
+    .approach-grid {
+      margin-top: 5rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      position: relative;
+    }
+    @media (min-width: 768px) { .approach-grid { grid-template-columns: repeat(4, 1fr); } }
+    .approach-line {
+      display: none;
+      position: absolute;
+      top: 3.5rem;
+      left: 12%;
+      right: 12%;
+      height: 2px;
+      background: linear-gradient(to right, rgba(139,195,74,0.2), rgba(46,125,50,0.4), rgba(139,195,74,0.2));
+    }
+    @media (min-width: 768px) { .approach-line { display: block; } }
+    .approach-step { position: relative; text-align: center; }
+    .approach-step:hover .step-icon { border-color: rgba(46,125,50,0.4); background: rgba(46,125,50,0.05); }
+    .approach-step:hover .step-icon svg { transform: scale(1.1); }
+    .step-icon {
+      position: relative;
+      z-index: 10;
+      width: 7rem;
+      height: 7rem;
+      margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      background: #F8F7F2;
+      border: 2px solid rgba(46,125,50,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2E7D32;
+      transition: all 0.5s;
+    }
+    .step-icon svg { transition: transform 0.3s; }
+    .step-label {
+      display: inline-block;
+      margin-bottom: 0.5rem;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #8BC34A;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+    .approach-step h3 { font-size: 1.25rem; font-weight: 700; color: #1A1A2E; }
+    .approach-step p {
+      margin-top: 0.75rem;
+      color: rgba(26,26,46,0.55);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      max-width: 220px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .approach-quote {
+      margin-top: 5rem;
+      text-align: center;
+    }
+    .approach-quote blockquote {
+      max-width: 40rem;
+      margin: 0 auto;
+      padding: 2rem;
+      border-left: 4px solid #2E7D32;
+      background: #F8F7F2;
+      border-radius: 0 0.5rem 0.5rem 0;
+    }
+    .approach-quote p {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1A1A2E;
+      line-height: 1.4;
+      font-style: italic;
+    }
+    @media (min-width: 640px) { .approach-quote p { font-size: 1.5rem; } }
+
+    /* ===== NEWS ===== */
+    .news-section { padding: 6rem 0; background: #F8F7F2; }
+    @media (min-width: 1024px) { .news-section { padding: 8rem 0; } }
+    .news-grid {
+      margin-top: 4rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 768px) { .news-grid { grid-template-columns: repeat(3, 1fr); } }
+    .news-card {
+      background: white;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      transition: box-shadow 0.5s;
+    }
+    .news-card:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    .news-card-image {
+      height: 13rem;
+      overflow: hidden;
+      background: #e8e8e0;
+    }
+    .news-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s;
+    }
+    .news-card:hover .news-card-image img { transform: scale(1.05); }
+    .news-card-body { padding: 1.5rem; }
+    .news-card-body h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #1A1A2E;
+      line-height: 1.35;
+      transition: color 0.3s;
+    }
+    .news-card:hover .news-card-body h3 { color: #2E7D32; }
+    .news-meta {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(26,26,46,0.5);
+      font-size: 0.875rem;
+    }
+    .news-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+      color: #2E7D32;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: gap 0.3s;
+    }
+    .news-link:hover { gap: 0.75rem; }
+
+    /* ===== PARTNERS ===== */
+    .partners-section {
+      padding: 4rem 0 5rem;
+      background: white;
+      border-top: 1px solid rgba(26,26,46,0.05);
+    }
+    .partners-label {
+      text-align: center;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: rgba(26,26,46,0.4);
+      margin-bottom: 2.5rem;
+    }
+    .partners-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    @media (min-width: 1024px) { .partners-grid { gap: 3.5rem; } }
+    .partner-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 3.5rem;
+      padding: 0 1.5rem;
+      border-radius: 0.375rem;
+      background: #F8F7F2;
+      border: 1px solid rgba(26,26,46,0.05);
+    }
+    .partner-badge span {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: rgba(26,26,46,0.3);
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      position: relative;
+      padding: 6rem 0;
+      background: #1A1A2E;
+      overflow: hidden;
+    }
+    @media (min-width: 1024px) { .cta-section { padding: 8rem 0; } }
+    .cta-blur-1 {
+      position: absolute;
+      top: 0; right: 0;
+      width: 500px; height: 500px;
+      background: rgba(46,125,50,0.08);
+      border-radius: 50%;
+      filter: blur(150px);
+      transform: translate(33%, -33%);
+    }
+    .cta-blur-2 {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 320px; height: 320px;
+      background: rgba(139,195,74,0.05);
+      border-radius: 50%;
+      filter: blur(120px);
+      transform: translate(-33%, 33%);
+    }
+    .cta-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+    }
+    @media (min-width: 1024px) { .cta-grid { grid-template-columns: 1fr 1fr; gap: 5rem; } }
+    .cta-text h2 {
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1.15;
+    }
+    @media (min-width: 640px) { .cta-text h2 { font-size: 2.25rem; } }
+    @media (min-width: 1024px) { .cta-text h2 { font-size: 3rem; } }
+    .cta-text h2 .green { color: #8BC34A; }
+    .cta-text > p { margin-top: 1.25rem; color: rgba(255,255,255,0.5); font-size: 1.125rem; line-height: 1.6; }
+    .cta-contact { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+    .cta-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.3s;
+    }
+    .cta-contact-item:hover { color: #8BC34A; }
+    .cta-contact-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cta-contact-item span { font-size: 0.875rem; }
+    .cta-card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 0.5rem;
+      padding: 2rem;
+    }
+    @media (min-width: 1024px) { .cta-card { padding: 2.5rem; } }
+    .cta-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+    .cta-card > p { color: rgba(255,255,255,0.4); font-size: 0.875rem; margin-bottom: 1.5rem; }
+    .cta-buttons { display: flex; flex-direction: column; gap: 1rem; }
+    .btn-cta-primary {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      background: #2E7D32;
+      color: white;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 0.375rem;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-cta-primary:hover { background: #8BC34A; color: #1A1A2E; }
+    .btn-cta-outline {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 0.375rem;
+      transition: all 0.3s;
+      background: transparent;
+      cursor: pointer;
+    }
+    .btn-cta-outline:hover { border-color: #8BC34A; color: #8BC34A; }
+
+    /* ===== FOOTER ===== */
+    .footer { background: #0D0D14; color: rgba(255,255,255,0.6); }
+    .footer-inner { padding: 4rem 0 5rem; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    @media (min-width: 768px) { .footer-grid { grid-template-columns: 5fr 3fr 4fr; gap: 2rem; } }
+    .footer-brand img { height: 3rem; margin-bottom: 1.5rem; }
+    .footer-brand p { font-size: 0.875rem; line-height: 1.6; max-width: 24rem; }
+    .footer-social { margin-top: 1.5rem; display: flex; gap: 0.75rem; }
+    .footer-social a {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    .footer-social a:hover { background: #2E7D32; border-color: #2E7D32; color: white; }
+    .footer-nav h4 {
+      font-family: "Space Grotesk", sans-serif;
+      color: white;
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 1.5rem;
+    }
+    .footer-nav nav { display: flex; flex-direction: column; gap: 0.75rem; }
+    .footer-nav nav a { font-size: 0.875rem; transition: color 0.3s; }
+    .footer-nav nav a:hover { color: #8BC34A; }
+    .footer-contact h4 {
+      font-family: "Space Grotesk", sans-serif;
+      color: white;
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 1.5rem;
+    }
+    .footer-contact-list { display: flex; flex-direction: column; gap: 1rem; }
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.875rem;
+      transition: color 0.3s;
+    }
+    .footer-contact-item:hover { color: #8BC34A; }
+    .footer-contact-item svg { flex-shrink: 0; margin-top: 2px; color: #2E7D32; }
+    .footer-newsletter {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-newsletter p { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-bottom: 0.75rem; }
+    .footer-newsletter-form { display: flex; gap: 0.5rem; }
+    .footer-newsletter-form input {
+      flex: 1;
+      padding: 0.625rem 1rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 0.375rem;
+      font-size: 0.875rem;
+      color: white;
+      transition: border-color 0.3s;
+    }
+    .footer-newsletter-form input::placeholder { color: rgba(255,255,255,0.3); }
+    .footer-newsletter-form input:focus { border-color: rgba(46,125,50,0.5); }
+    .footer-newsletter-form button {
+      padding: 0.625rem 1rem;
+      background: #2E7D32;
+      color: white;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 0.375rem;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .footer-newsletter-form button:hover { background: #8BC34A; color: #1A1A2E; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+    }
+    @media (min-width: 640px) { .footer-bottom { flex-direction: row; } }
+    .footer-bottom-links { display: flex; gap: 1.5rem; }
+    .footer-bottom-links a { transition: color 0.3s; }
+    .footer-bottom-links a:hover { color: rgba(255,255,255,0.6); }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <div class="nav-links">
+        <a href="#inicio" class="nav-link">Início</a>
+        <a href="#sobre" class="nav-link">Sobre</a>
+        <a href="#solucoes" class="nav-link">Soluções</a>
+      </div>
+      <a href="#inicio" class="nav-logo">
+        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663210798515/wnwPntgjWhSpiClK.png" alt="Cleantech Incubator" />
+      </a>
+      <div class="nav-links right">
+        <a href="#impacto" class="nav-link">Impacto</a>
+        <a href="#noticias" class="nav-link">Notícias</a>
+        <a href="#contato" class="nav-link">Contato</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="nav-social">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#inicio">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#solucoes">Soluções</a>
+      <a href="#impacto">Impacto</a>
+      <a href="#noticias">Notícias</a>
+      <a href="#contato">Contato</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg" style="background-image: url('https://private-us-east-1.manuscdn.com/sessionFile/46CRcNWX5119rd35V3Jc5B/sandbox/xm4d8fn5Uetq0sqV6KknaO-img-1_1772099911000_na1fn_aGVyby1jbGVhbnRlY2g.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvNDZDUmNOV1g1MTE5cmQzNVYzSmM1Qi9zYW5kYm94L3htNGQ4Zm41VWV0cTBzcVY2S2tuYU8taW1nLTFfMTc3MjA5OTkxMTAwMF9uYTFmbl9hR1Z5YnkxamJHVmhiblJsWTJnLmpwZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE5MjAsaF8xOTIwL2Zvcm1hdCx3ZWJwL3F1YWxpdHkscV84MCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=UojN1ab7BCO2iSoT7YtmgjRKSvQ~URlfpusw-uyeO-PeSUb~Dae6NBJ-v6sU0hxFK5aabDkdB2-KHyykwGO-PmiVzpvQVk6RRJ2zt3WcQgd2To0lSR1-~RNjfAUtaAinqgAQy1Amwiu9rQwL4dTTvQ-oFZjW0-MS2gZqV7fMBP5mdZ072SAfNQjUJg2zz~M-UN5o20vjq~a6LCd7hDZbEjO1YGXIWjh0RruZQEUXXB83GyG~l-RZlg3pGVnA6KXtkOnvyraNWG8PN1s4w1VB30jFWWgTepihCm2W1C5TC1oYYHdwjyCvNNwY7VW5tdeNC1rqhyQJQjfotKhrR2-T1Q__')"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>
+        <span>Inovação</span>
+        <span class="green">Descarbonização</span>
+        <span>Regeneração</span>
+      </h1>
+      <p class="hero-desc">
+        A <strong>Cleantech Incubator</strong> utiliza inovação e tecnologia como ferramentas para promover a economia circular, mitigar as mudanças climáticas e restaurar o equilíbrio ambiental.
+      </p>
+      <div class="hero-buttons">
+        <a href="#solucoes" class="btn-primary">Nossas Soluções</a>
+        <a href="#contato" class="btn-outline-white">Fale Conosco</a>
+      </div>
+    </div>
+    <a href="#sobre" class="scroll-indicator">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    </a>
+  </section>
+
+  <!-- ===== CRISIS / ABOUT ===== -->
+  <section class="crisis-section" id="sobre">
+    <div class="container">
+      <div class="crisis-grid">
+        <div class="crisis-image-wrapper animate-left">
+          <div class="crisis-image">
+            <img src="https://private-us-east-1.manuscdn.com/sessionFile/46CRcNWX5119rd35V3Jc5B/sandbox/xm4d8fn5Uetq0sqV6KknaO-img-5_1772099917000_na1fn_bmF0dXJlLXRlY2g.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvNDZDUmNOV1g1MTE5cmQzNVYzSmM1Qi9zYW5kYm94L3htNGQ4Zm41VWV0cTBzcVY2S2tuYU8taW1nLTVfMTc3MjA5OTkxNzAwMF9uYTFmbl9ibUYwZFhKbExYUmxZMmcuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=MuCnCajS4Y--IoIMFizdSmUfav3KfnuHYW~alsMnezrNkLLzbrvoqAkCdDMCtYwhCLWiQETjApzxS3uxaG7HcrVnz2KJ7j~lRtl2jGIF-ZeZMrkxWw1bhC~pixR7e9ho~hAcI8EgMGnVdky2UqDMFE6HZejMpbWIyHsAi~vXTipwrdq9GrMxmEbHeQh~GK01ydZaKz96qDQCpcAzJOGy8Z1b1yDWTf1iX09uCLgo094suamzOUu8eqjGgfQsE6lcQ7n06nN4vKIfxUO2eXbhfwuJcDDkZJRdGe1zV8Zs0gJZg71d15~7Pe1wiepqUaLx5weIbw7awIckgPcNF9Nt~w__" alt="Natureza e tecnologia" loading="lazy" />
+          </div>
+          <div class="green-card animate-on-scroll delay-4">
+            <p class="small-text">A Cleantech Incubator está comprometida com um modelo</p>
+            <div class="stat-row">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">circular,<br>carbono-negativo</span>
+            </div>
+            <p class="small-text">cujas soluções impulsionam o <strong style="font-weight:600;color:white">desenvolvimento regenerativo.</strong></p>
+          </div>
+        </div>
+        <div class="crisis-text animate-right">
+          <h2>
+            Vivemos em uma era de
+            <span class="green-underline">crise sistêmica
+              <svg viewBox="0 0 200 8" fill="none"><path d="M2 6 C60 1, 140 1, 198 6" stroke="#8BC34A" stroke-width="2.5" stroke-linecap="round"/></svg>
+            </span>
+          </h2>
+          <div class="crisis-items">
+            <div class="crisis-item animate-on-scroll delay-4">
+              <div class="crisis-item-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M16 14v6"/><path d="M8 14v6"/><path d="M12 16v6"/></svg>
+              </div>
+              <span>Mudanças climáticas</span>
+            </div>
+            <div class="crisis-item animate-on-scroll delay-5">
+              <div class="crisis-item-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 17 3.5s1.5 2.5 1.5 6c0 1.5-.5 3-1 4"/><path d="M11.7 20a2 2 0 0 0 3.5-2"/></svg>
+              </div>
+              <span>Perda de biodiversidade</span>
+            </div>
+            <div class="crisis-item animate-on-scroll delay-6">
+              <div class="crisis-item-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+              </div>
+              <span>Degradação ambiental</span>
+            </div>
+            <div class="crisis-item animate-on-scroll delay-7">
+              <div class="crisis-item-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <span>Desigualdade social</span>
+            </div>
+          </div>
+          <div class="crisis-bottom animate-on-scroll delay-8">
+            <p>Uma crise que exige soluções ambiciosas e multidimensionais.</p>
+            <p>Precisamos mudar de um modelo que apenas busca reduzir seus danos para um que <strong>crie impacto positivo.</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SOLUTIONS ===== -->
+  <section class="solutions-section" id="solucoes">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <h2>Nossas Soluções</h2>
+        <p>Três pilares que impulsionam a transição para uma economia limpa e regenerativa</p>
+      </div>
+      <div class="solutions-grid">
+        <div class="solution-card animate-on-scroll delay-2">
+          <div class="solution-card-image">
+            <img src="https://private-us-east-1.manuscdn.com/sessionFile/46CRcNWX5119rd35V3Jc5B/sandbox/xm4d8fn5Uetq0sqV6KknaO-img-3_1772099910000_na1fn_cmVuZXdhYmxlLWVuZXJneQ.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvNDZDUmNOV1g1MTE5cmQzNVYzSmM1Qi9zYW5kYm94L3htNGQ4Zm41VWV0cTBzcVY2S2tuYU8taW1nLTNfMTc3MjA5OTkxMDAwMF9uYTFmbl9jbVZ1WlhkaFlteGxMV1Z1WlhKbmVRLmpwZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE5MjAsaF8xOTIwL2Zvcm1hdCx3ZWJwL3F1YWxpdHkscV84MCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=f~vf9rMBtBDr6BU2ZHOCD0uiGwx9-x56gpNgcLAQl0Ogr9IdApDGt0qHYVmqPVUPvXSKuKzklhH2GX93tUXaCE~CsiLz11CEMqNuUq4BYtqMdN7X91lLuXH1Y44Qg6BvPAwClv6DI~TcPYkTJzF6ZxHxC~BjXFMKkmztKEMjGrD5CHhU1eRv5MMgUbEivcYOx5MEPxltrFmszMd~3VQpNjST0HkgwHnBrOmwKu-HsM-~-ZXs354lYvIOAmX31kbi5ANkiuP~Cj3IQFKFmc~JpZF7OZ2FxBLJbr6zaczcu5~tzN802EFULHCSyo-nvpHlI4jAuU6~J1tOD6GD-b02Fg__" alt="Programa de Incubação" loading="lazy" />
+            <div class="solution-icon-badge">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+          </div>
+          <div class="solution-card-body">
+            <p class="question">Procurando acelerar sua startup cleantech?</p>
+            <h3>Programa de Incubação</h3>
+            <p>Procurando acelerar sua startup de tecnologia limpa? Oferecemos mentoria especializada, infraestrutura e conexões com investidores para impulsionar seu crescimento.</p>
+            <a href="#contato" class="btn-green-sm">Saiba mais <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+          </div>
+        </div>
+        <div class="solution-card animate-on-scroll delay-3">
+          <div class="solution-card-image">
+            <img src="https://private-us-east-1.manuscdn.com/sessionFile/46CRcNWX5119rd35V3Jc5B/sandbox/xm4d8fn5Uetq0sqV6KknaO-img-2_1772099908000_na1fn_c3RhcnR1cC13b3Jrc3BhY2U.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvNDZDUmNOV1g1MTE5cmQzNVYzSmM1Qi9zYW5kYm94L3htNGQ4Zm41VWV0cTBzcVY2S2tuYU8taW1nLTJfMTc3MjA5OTkwODAwMF9uYTFmbl9jM1JoY25SMWNDMTNiM0pyYzNCaFkyVS5qcGc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xOTIwLGhfMTkyMC9mb3JtYXQsd2VicC9xdWFsaXR5LHFfODAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=vpukBsJNF3uLzLsMJUffxHexZR3xO5jim54w1WTzx1C6zlnr9UHUbghpqZTOdENd-CnZosnt0zwGYFTRb93EisqVfX6HyBkdMr0cZMSmjbWDFiSLJWqZSFD~nckJcovxILMG6VbKdGjOyxbxbwFkeLzrzvPkWaC-8TERjy7uqE0fpz6H-H9vcSBhZl4zwrAJOlqmmRXhu1iCmcnwsdUFwz7dmzSndaeczN-8HzX92DiIDP7coiAisosMDh9tfa7ivC8GPyaR9ckD3xGTHip-ac0gcAwwY7zV3a7CJpcYS5ZudyI~JvPwFA8qnnXbvSjsjoWOSSlGmgsJgVXpyZ-~2Q__" alt="Créditos de Carbono" loading="lazy" />
+            <div class="solution-icon-badge">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 17 3.5 17 3.5s1.5 2.5 1.5 6c0 1.5-.5 3-1 4"/><path d="M11.7 20a2 2 0 0 0 3.5-2"/></svg>
+            </div>
+          </div>
+          <div class="solution-card-body">
+            <p class="question">Procurando créditos de carbono confiáveis?</p>
+            <h3>Créditos de Carbono (CDR)</h3>
+            <p>Créditos de carbono transparentes e permanentes que geram múltiplos co-benefícios sociais e ambientais para sua empresa.</p>
+            <a href="#contato" class="btn-green-sm">Saiba mais <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+          </div>
+        </div>
+        <div class="solution-card animate-on-scroll delay-4">
+          <div class="solution-card-image">
+            <img src="https://private-us-east-1.manuscdn.com/sessionFile/46CRcNWX5119rd35V3Jc5B/sandbox/xm4d8fn5Uetq0sqV6KknaO-img-4_1772099930000_na1fn_aW5ub3ZhdGlvbi1sYWI.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvNDZDUmNOV1g1MTE5cmQzNVYzSmM1Qi9zYW5kYm94L3htNGQ4Zm41VWV0cTBzcVY2S2tuYU8taW1nLTRfMTc3MjA5OTkzMDAwMF9uYTFmbl9hVzV1YjNaaGRHbHZiaTFzWVdJLmpwZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE5MjAsaF8xOTIwL2Zvcm1hdCx3ZWJwL3F1YWxpdHkscV84MCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=S0G3zHpkrZbj4D65UPiPpB~zufZUH5Y8e-RPWEbTKnwNUpC15YI5zgj7KogQwXRixpMMmYbKnw7yzVazQLJfCtb9FJBUNAXnwhC560ksHrkJdc9Gyf8M4suFiDSMCXVlx3pmAHCSgmGO2wrcZydPTHKKIRgNJRQLQYOQBLbgB9SjuwpK1ZHinEGy9GJgA8nS0o22DgRIPd9WQwX65ArnDVRibSOfocqYsicfJpsl~ZR982t9jjFkGcRtsFwSuBOMOqsyqJElAxZwPB2X-o7eWkmhujr6JGUNnsm2cjJY7K9wHzkpbxSX3BHEVpDR3ZSQH9DaxKu9s9P22l-1YEQXtA__" alt="Laboratório de Inovação" loading="lazy" />
+            <div class="solution-icon-badge">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/></svg>
+            </div>
+          </div>
+          <div class="solution-card-body">
+            <p class="question">Procurando soluções de economia circular?</p>
+            <h3>Laboratório de Inovação</h3>
+            <p>Transforme resíduos em recursos e aumente a circularidade da sua cadeia de valor com nosso laboratório de P&amp;D de ponta.</p>
+            <a href="#contato" class="btn-green-sm">Saiba mais <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== IMPACT ===== -->
+  <section class="impact-section" id="impacto">
+    <div class="impact-pattern"></div>
+    <div class="impact-blur-1"></div>
+    <div class="impact-blur-2"></div>
+    <div class="container" style="position:relative;z-index:10;">
+      <div class="impact-header animate-on-scroll">
+        <h2>Nosso Impacto</h2>
+        <p>Números que refletem nosso compromisso com a transformação sustentável</p>
+      </div>
+      <div class="impact-grid">
+        <div class="impact-item animate-on-scroll delay-3">
+          <span class="impact-number" data-target="48" data-prefix="+" data-suffix="">+0</span>
+          <p class="impact-label">Startups
+Incubadas</p>
+        </div>
+        <div class="impact-item animate-on-scroll delay-4">
+          <div class="impact-divider"></div>
+          <span class="impact-number" data-target="12" data-prefix="R$" data-suffix="M">R$0M</span>
+          <p class="impact-label">Milhões em
+Investimentos Captados</p>
+        </div>
+        <div class="impact-item animate-on-scroll delay-5">
+          <div class="impact-divider"></div>
+          <span class="impact-number" data-target="5200" data-prefix="+" data-suffix="">+0</span>
+          <p class="impact-label">Toneladas de CO₂
+Evitadas por Ano</p>
+        </div>
+        <div class="impact-item animate-on-scroll delay-6">
+          <div class="impact-divider"></div>
+          <span class="impact-number" data-target="350" data-prefix="+" data-suffix="">+0</span>
+          <p class="impact-label">Empregos Verdes
+Gerados</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== APPROACH ===== -->
+  <section class="approach-section">
+    <div class="container">
+      <div class="approach-header animate-on-scroll">
+        <h2>
+          Nossa Abordagem:
+          <span class="green-underline">Inovação
+            <svg viewBox="0 0 200 8" fill="none"><path d="M2 6 C60 1, 140 1, 198 6" stroke="#8BC34A" stroke-width="2.5" stroke-linecap="round"/></svg>
+          </span>, Escala e Impacto
+        </h2>
+        <p>Utilizamos uma metodologia proprietária que combina ciência, tecnologia e capital para transformar ideias em soluções que regeneram o planeta.</p>
+      </div>
+      <div class="approach-grid">
+        <div class="approach-line"></div>
+        <div class="approach-step animate-on-scroll delay-3">
+          <div class="step-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+          </div>
+          <span class="step-label">Etapa 1</span>
+          <h3>Seleção</h3>
+          <p>Identificamos startups com soluções inovadoras em tecnologias limpas que tenham potencial de impacto escalável.</p>
+        </div>
+        <div class="approach-step animate-on-scroll delay-4">
+          <div class="step-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+          </div>
+          <span class="step-label">Etapa 2</span>
+          <h3>Aceleração</h3>
+          <p>Fornecemos mentoria, infraestrutura e acesso a uma rede de especialistas para acelerar o desenvolvimento do produto.</p>
+        </div>
+        <div class="approach-step animate-on-scroll delay-5">
+          <div class="step-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          </div>
+          <span class="step-label">Etapa 3</span>
+          <h3>Crescimento</h3>
+          <p>Conectamos startups a investidores, parceiros estratégicos e mercados para escalar suas soluções globalmente.</p>
+        </div>
+        <div class="approach-step animate-on-scroll delay-6">
+          <div class="step-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+          </div>
+          <span class="step-label">Etapa 4</span>
+          <h3>Impacto</h3>
+          <p>Medimos e maximizamos o impacto ambiental e social de cada startup, garantindo resultados regenerativos.</p>
+        </div>
+      </div>
+      <div class="approach-quote animate-on-scroll delay-9">
+        <blockquote>
+          <p>"Restaurar e proteger o equilíbrio ambiental é essencial para reverter a crise climática."</p>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NEWS ===== -->
+  <section class="news-section" id="noticias">
+    <div class="container">
+      <h2 class="animate-on-scroll" style="font-size:2.25rem;font-weight:700;color:#1A1A2E;text-transform:uppercase;letter-spacing:-0.02em;text-align:center;font-family:'Space Grotesk',sans-serif;">Notícias</h2>
+      <div class="news-grid">
+        <article class="news-card animate-on-scroll delay-2">
+          <div class="news-card-image">
+            <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&h=400&fit=crop&q=80" alt="Energia Renovável" loading="lazy" />
+          </div>
+          <div class="news-card-body">
+            <h3>Cleantech Incubator Lança Programa de Aceleração para Startups de Energia Renovável</h3>
+            <div class="news-meta">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+              <span>Cleantech Brasil — 15/01/2026</span>
+            </div>
+            <a href="#" class="news-link" onclick="event.preventDefault()">Leia mais <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+          </div>
+        </article>
+        <article class="news-card animate-on-scroll delay-3">
+          <div class="news-card-image">
+            <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&h=400&fit=crop&q=80" alt="Economia Circular" loading="lazy" />
+          </div>
+          <div class="news-card-body">
+            <h3>Startups Incubadas Captam R$5 Milhões em Rodada Seed para Soluções de Economia Circular</h3>
+            <div class="news-meta">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+              <span>Valor Econômico — 28/12/2025</span>
+            </div>
+            <a href="#" class="news-link" onclick="event.preventDefault()">Leia mais <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+          </div>
+        </article>
+        <article class="news-card animate-on-scroll delay-4">
+          <div class="news-card-image">
+            <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&h=400&fit=crop&q=80" alt="Captura de Carbono" loading="lazy" />
+          </div>
+          <div class="news-card-body">
+            <h3>Parceria com Universidades Amplia Pesquisa em Tecnologias de Captura de Carbono</h3>
+            <div class="news-meta">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+              <span>Folha de São Paulo — 10/11/2025</span>
+            </div>
+            <a href="#" class="news-link" onclick="event.preventDefault()">Leia mais <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PARTNERS ===== -->
+  <section class="partners-section">
+    <div class="container">
+      <p class="partners-label animate-on-scroll">Parceiros e Apoiadores</p>
+      <div class="partners-grid">
+        <div class="partner-badge animate-on-scroll delay-1"><span>BNDES</span></div>
+        <div class="partner-badge animate-on-scroll delay-2"><span>FINEP</span></div>
+        <div class="partner-badge animate-on-scroll delay-3"><span>FAPESP</span></div>
+        <div class="partner-badge animate-on-scroll delay-4"><span>SEBRAE</span></div>
+        <div class="partner-badge animate-on-scroll delay-5"><span>SENAI</span></div>
+        <div class="partner-badge animate-on-scroll delay-6"><span>ANPROTEC</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-section" id="contato">
+    <div class="cta-blur-1"></div>
+    <div class="cta-blur-2"></div>
+    <div class="container">
+      <div class="cta-grid">
+        <div class="cta-text animate-left">
+          <h2>Tem uma ideia que pode <span class="green">mudar o mundo?</span></h2>
+          <p>Entre em contato conosco e descubra como a Cleantech Incubator pode ajudar a transformar sua visão em realidade.</p>
+          <div class="cta-contact">
+            <a href="mailto:contato@cleantechincubator.com" class="cta-contact-item">
+              <div class="cta-contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </div>
+              <span>contato@cleantechincubator.com</span>
+            </a>
+            <a href="tel:+5511999999999" class="cta-contact-item">
+              <div class="cta-contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <span>+55 (11) 99999-9999</span>
+            </a>
+          </div>
+        </div>
+        <div class="cta-card animate-right">
+          <h3>Vamos conversar</h3>
+          <p>Escolha como prefere entrar em contato</p>
+          <div class="cta-buttons">
+            <a href="mailto:contato@cleantechincubator.com" class="btn-cta-primary">Enviar E-mail <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            <a href="#" class="btn-cta-outline" onclick="event.preventDefault()">Inscreva sua Startup</a>
+            <a href="#" class="btn-cta-outline" onclick="event.preventDefault()">Seja um Parceiro</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663210798515/wnwPntgjWhSpiClK.png" alt="Cleantech Incubator" />
+          <p>Acelerando startups de tecnologias limpas para um futuro sustentável, circular e regenerativo. Transformamos inovação em impacto positivo para o planeta.</p>
+          <div class="footer-social">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="mailto:contato@cleantechincubator.com">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-nav">
+          <h4>Navegação</h4>
+          <nav>
+            <a href="#inicio">Início</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#solucoes">Soluções</a>
+            <a href="#impacto">Impacto</a>
+            <a href="#noticias">Notícias</a>
+            <a href="#contato">Contato</a>
+          </nav>
+        </div>
+        <div class="footer-contact">
+          <h4>Contato</h4>
+          <div class="footer-contact-list">
+            <a href="#" class="footer-contact-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>São Paulo, SP — Brasil</span>
+            </a>
+            <a href="tel:+5511999999999" class="footer-contact-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>+55 (11) 99999-9999</span>
+            </a>
+            <a href="mailto:contato@cleantechincubator.com" class="footer-contact-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <span>contato@cleantechincubator.com</span>
+            </a>
+          </div>
+          <div class="footer-newsletter">
+            <p>Receba nossas novidades</p>
+            <div class="footer-newsletter-form">
+              <input type="email" placeholder="Seu e-mail" />
+              <button>OK</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <p>&copy; 2026 Cleantech Incubator. Todos os direitos reservados.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Termos de Uso</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== NAVBAR SCROLL =====
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // ===== MOBILE MENU =====
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+
+    // ===== SCROLL ANIMATIONS =====
+    const observerOptions = { threshold: 0.1, rootMargin: '-60px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-on-scroll, .animate-left, .animate-right').forEach(el => {
+      observer.observe(el);
+    });
+
+    // ===== ANIMATED COUNTERS =====
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.target);
+          const prefix = el.dataset.prefix || '';
+          const suffix = el.dataset.suffix || '';
+          const duration = 2000;
+          const start = performance.now();
+
+          function animate(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(eased * target);
+            el.textContent = prefix + current.toLocaleString('pt-BR') + suffix;
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            } else {
+              el.textContent = prefix + target.toLocaleString('pt-BR') + suffix;
+            }
+          }
+          requestAnimationFrame(animate);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.impact-number[data-target]').forEach(el => {
+      counterObserver.observe(el);
+    });
+  </script>
+</body>
+</html>
